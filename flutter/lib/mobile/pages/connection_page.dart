@@ -17,6 +17,8 @@ import '../../consts.dart';
 import '../../models/model.dart';
 import '../../models/platform_model.dart';
 import 'home_page.dart';
+import 'scan_page.dart';
+import '../widgets/dialog.dart';
 
 /// Connection page for connecting to a remote peer.
 class ConnectionPage extends StatefulWidget implements PageShape {
@@ -29,7 +31,7 @@ class ConnectionPage extends StatefulWidget implements PageShape {
   final title = translate("Connection");
 
   @override
-  final List<Widget> appBarActions;
+  final List<Widget> appBarActions = [ScanButton()];
 
   @override
   State<ConnectionPage> createState() => _ConnectionPageState();
@@ -372,5 +374,22 @@ class _ConnectionPageState extends State<ConnectionPage> {
       Get.delete<TextEditingController>();
     }
     super.dispose();
+  }
+}
+
+class ScanButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.qr_code_scanner),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => ScanPage(),
+          ),
+        );
+      },
+    );
   }
 }

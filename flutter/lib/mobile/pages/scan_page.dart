@@ -20,6 +20,7 @@ class _ScanPageState extends State<ScanPage> {
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   StreamSubscription? scanSubscription;
+  bool isProcessing = false;
 
   @override
   void reassemble() {
@@ -69,9 +70,20 @@ class _ScanPageState extends State<ScanPage> {
     setState(() {
       this.controller = controller;
     });
-    scanSubscription = controller.scannedDataStream.listen((scanData) {
-      if (scanData.code != null) {
-        showServerSettingFromQr(scanData.code!);
+    
+    scanSubscription = controller.scannedDataStream.listen((scanData) async {
+      if (scanData.code == null || isProcessing) return;
+      
+      isProcessing = true;
+      try {
+        if (scanData.code.startsWith(bind.mainUriPrefixSync())) {
+          await handleUriLink(uriString: scanData.code!);
+        } else {
+          await showServerSettingFromQr(scanData.code!);
+        }
+        await Future.delayed(Duration(seconds: 2));
+      } finally {
+        isProcessing = false;
       }
     });
   }

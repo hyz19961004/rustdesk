@@ -30,7 +30,7 @@ class SettingsPage extends StatefulWidget implements PageShape {
   final icon = Icon(Icons.settings);
 
   @override
-  final appBarActions = bind.isDisableSettings() ? [] : [ScanButton()];
+  final appBarActions = bind.isDisableSettings() ? [] : [];
 
   @override
   State<SettingsPage> createState() => _SettingsState();
@@ -939,23 +939,6 @@ void showAbout(OverlayDialogManager dialogManager) {
       actions: [],
     );
   }, clickMaskDismiss: true, backDismiss: true);
-}
-
-class ScanButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(Icons.qr_code_scanner),
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => ScanPage(),
-          ),
-        );
-      },
-    );
-  }
 }
 
 class _DisplayPage extends StatefulWidget {
