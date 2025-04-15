@@ -22,8 +22,6 @@ import '../widgets/dialog.dart';
 
 /// Connection page for connecting to a remote peer.
 class ConnectionPage extends StatefulWidget implements PageShape {
-  ConnectionPage({Key? key, required this.appBarActions}) : super(key: key);
-
   @override
   final icon = const Icon(Icons.connected_tv);
 
@@ -31,7 +29,11 @@ class ConnectionPage extends StatefulWidget implements PageShape {
   final title = translate("Connection");
 
   @override
-  final List<Widget> appBarActions = [ScanButton()];
+  final List<Widget> appBarActions;
+
+  ConnectionPage({Key? key, required List<Widget> appBarActions}) 
+      : appBarActions = [...appBarActions, ScanButton()],
+        super(key: key);
 
   @override
   State<ConnectionPage> createState() => _ConnectionPageState();

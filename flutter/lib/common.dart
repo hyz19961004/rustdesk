@@ -2296,9 +2296,9 @@ List<String>? urlLinkToCmdArgs(Uri uri) {
 
   if (isMobile) {
     if (id != null) {
-      final password = uri.queryParameters["password"] != null;
+      final password = uri.queryParameters["password"];
       final forceRelay = queryParameters["relay"] != null;
-      final isSharedPassword = password;
+      final isSharedPassword = password != null;
       connect(Get.context!, id, 
         forceRelay: forceRelay, 
         password: password, 

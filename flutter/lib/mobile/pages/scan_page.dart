@@ -76,10 +76,11 @@ class _ScanPageState extends State<ScanPage> {
       
       isProcessing = true;
       try {
-        if (scanData.code.startsWith(bind.mainUriPrefixSync())) {
-          await handleUriLink(uriString: scanData.code!);
+        final code = scanData.code!;
+        if (code.startsWith(bind.mainUriPrefixSync())) {
+          await handleUriLink(uriString: code);
         } else {
-          await showServerSettingFromQr(scanData.code!);
+          showServerSettingFromQr(code);
         }
         await Future.delayed(Duration(seconds: 2));
       } finally {
