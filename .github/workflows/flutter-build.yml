@@ -924,7 +924,7 @@ jobs:
           - {
               arch: aarch64,
               target: aarch64-linux-android,
-              os: ubuntu-20.04,
+              os: [self-hosted, linux, x64],
               reltype: release,
               suffix: "",
             }
