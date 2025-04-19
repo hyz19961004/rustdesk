@@ -1000,16 +1000,16 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: "stable"
-          flutter-version: ${{ env.ANDROID_FLUTTER_VERSION }}
+      # - name: Install flutter
+      #   uses: subosito/flutter-action@v2
+      #   with:
+      #     channel: "stable"
+      #     flutter-version: ${{ env.ANDROID_FLUTTER_VERSION }}
 
-      - name: Patch flutter
-        run: |
-          cd $(dirname $(dirname $(which flutter)))
-          [[ "3.24.5" == ${{env.ANDROID_FLUTTER_VERSION}} ]] && git apply ${{ github.workspace }}/.github/patches/flutter_3.24.4_dropdown_menu_enableFilter.diff
+      # - name: Patch flutter
+      #   run: |
+      #     cd $(dirname $(dirname $(which flutter)))
+      #     [[ "3.24.5" == ${{env.ANDROID_FLUTTER_VERSION}} ]] && git apply ${{ github.workspace }}/.github/patches/flutter_3.24.4_dropdown_menu_enableFilter.diff
 
       - uses: nttld/setup-ndk@v1
         id: setup-ndk
