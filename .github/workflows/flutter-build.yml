@@ -1165,7 +1165,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: rustdesk-unsigned-${{ env.VERSION }}-${{ matrix.job.arch }}.apk
-          path: rustdesk-${{ env.VERSION }}-${{ matrix.job.arch }}${{ matrix.job.suffix }}.apk
+          path: signed-apk/rustdesk-${{ env.VERSION }}-${{ matrix.job.arch }}${{ matrix.job.suffix }}.apk
 
       # https://github.com/r0adkll/sign-android-release/issues/84#issuecomment-1889636075
       - name: Setup sign tool version variable
